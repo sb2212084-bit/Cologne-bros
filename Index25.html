@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cologne Bros – Premium Samples & Full Bottles</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  background: linear-gradient(to bottom, #d2b48c, #0b1a33);
+  color: white;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+header h1 {
+  font-size: 2.5rem;
+}
+
+header p {
+  max-width: 700px;
+  margin: 10px auto;
+  opacity: 0.9;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+h2 {
+  border-bottom: 2px solid gold;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.product {
+  background: rgba(0,0,0,0.4);
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.product h3 {
+  margin-bottom: 5px;
+}
+
+.badge {
+  display: inline-block;
+  background: gold;
+  color: black;
+  font-size: 0.75rem;
+  padding: 3px 6px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.btn {
+  margin-top: 10px;
+  padding: 10px;
+  width: 100%;
+  background: gold;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.cart {
+  background: rgba(0,0,0,0.5);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.cart ul {
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+footer {
+  text-align: center;
+  opacity: 0.8;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Cologne Bros</h1>
+  <p>
+    Premium cologne samples & full-size bottles.  
+    We mostly specialize in samples, but we also sell authentic full bottles.  
+    No matter your price range, we have samples as low as <strong>$3</strong>.
+  </p>
+</header>
+
+<div class="container">
+
+<section>
+  <h2>Best Sellers & Samples</h2>
+  <div class="products">
+
+    <div class="product">
+      <span class="badge">BEST SELLER</span>
+      <h3>JPG Le Male Elixir</h3>
+      <p>Sample Sizes Available</p>
+      <strong>From $3</strong>
+      <button class="btn" onclick="addToCart('JPG Le Male Elixir Sample',3)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <h3>Dior Sauvage</h3>
+      <p>Sample Sizes</p>
+      <strong>From $4</strong>
+      <button class="btn" onclick="addToCart('Dior Sauvage Sample',4)">Add to Cart</button>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <h2>Full Size Bottles</h2>
+  <div class="products">
+
+    <div class="product">
+      <span class="badge">BEST SELLER</span>
+      <h3>JPG Le Male Elixir</h3>
+      <p>200ml / 6.8oz</p>
+      <strong>$210 (Negotiable)</strong>
+      <button class="btn" onclick="addToCart('JPG Le Male Elixir 200ml',210)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <h3>JPG Le Beau Paradise Garden</h3>
+      <p>75ml / 2.5oz</p>
+      <strong>$110 (Negotiable)</strong>
+      <button class="btn" onclick="addToCart('JPG Le Beau Paradise Garden 75ml',110)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <h3>Paco Rabanne 1 Million Elixir</h3>
+      <p>50ml / 1.7oz</p>
+      <strong>$110 (Negotiable)</strong>
+      <button class="btn" onclick="addToCart('Paco Rabanne 1 Million Elixir 50ml',110)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <h3>YSL La Nuit De L’Homme</h3>
+      <p>100ml / 3.4oz</p>
+      <strong>$100 (Negotiable)</strong>
+      <button class="btn" onclick="addToCart('YSL La Nuit De L Homme 100ml',100)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <h3>Replica By The Fireplace</h3>
+      <p>30ml / 1oz</p>
+      <strong>$85 (Negotiable)</strong>
+      <button class="btn" onclick="addToCart('Replica By The Fireplace 30ml',85)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <h3>Nautica Blue</h3>
+      <p>100ml / 3.4oz</p>
+      <strong>$15</strong>
+      <button class="btn" onclick="addToCart('Nautica Blue 100ml',15)">Add to Cart</button>
+    </div>
+
+  </div>
+</section>
+
+<section class="cart">
+  <h2>Your Cart</h2>
+  <ul id="cartItems"></ul>
+  <p><strong>Total: $<span id="total">0</span></strong></p>
+  <p>Copy your cart and email us to order:</p>
+  <button class="btn" onclick="emailOrder()">Email Order</button>
+</section>
+
+</div>
+
+<footer>
+  <p>Payments accepted: Cash & Venmo</p>
+</footer>
+
+<script>
+let cart = [];
+let total = 0;
+
+function addToCart(item, price) {
+  cart.push({ item, price });
+  total += price;
+  renderCart();
+}
+
+function renderCart() {
+  const cartList = document.getElementById('cartItems');
+  cartList.innerHTML = '';
+  cart.forEach(c => {
+    const li = document.createElement('li');
+    li.textContent = `${c.item} - $${c.price}`;
+    cartList.appendChild(li);
+  });
+  document.getElementById('total').textContent = total;
+}
+
+function emailOrder() {
+  let body = 'Order Details:%0D%0A';
+  cart.forEach(c => {
+    body += `${c.item} - $${c.price}%0D%0A`;
+  });
+  body += `%0D%0ATotal: $${total}`;
+  window.location.href = `mailto:thecolognebros@gmail.com?subject=Cologne Order&body=${body}`;
+}
+</script>
+
+</body>
+</html>
